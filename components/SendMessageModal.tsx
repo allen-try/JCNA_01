@@ -13,6 +13,7 @@ interface SendMessageModalProps {
 const SendMessageModal = ({ isOpen, onClose, outreachName, outreachEmail, outreachPhone }: SendMessageModalProps) => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   if (!isOpen) return null;
 
@@ -23,10 +24,41 @@ const SendMessageModal = ({ isOpen, onClose, outreachName, outreachEmail, outrea
   const handleSubmit = async () => {
     if (!form.name || !form.message) return;
     setStatus("sending");
+    setErrorMsg("");
+
+    const payload = {
+      full_name: form.name,
+      phone: form.phone,
+      email: form.email,
+      concern: form.message,
+      service_type: outreachName || "General Inquiry",
+    };
+
     try {
-      await new Promise((res) => setTimeout(res, 1200));
+      // 1. Save to Supabase
+      const saveRes = await fetch("/api/spiritual-services/saveSubmission", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!saveRes.ok) throw new Error("Failed to save submission");
+
+      // 2. Send confirmation + admin notification email (only if email was provided)
+      if (form.email) {
+        const emailRes = await fetch("/api/spiritual-services/sendEmailConfirmation", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (!emailRes.ok) {
+          console.error("Email failed to send, submission was still saved");
+        }
+      }
+
       setStatus("sent");
-    } catch {
+    } catch (err) {
+      console.error("Submit error:", err);
+      setErrorMsg("Something went wrong. Please try again or contact us directly.");
       setStatus("error");
     }
   };
@@ -34,6 +66,7 @@ const SendMessageModal = ({ isOpen, onClose, outreachName, outreachEmail, outrea
   const handleClose = () => {
     setForm({ name: "", email: "", phone: "", message: "" });
     setStatus("idle");
+    setErrorMsg("");
     onClose();
   };
 
@@ -186,6 +219,12 @@ const SendMessageModal = ({ isOpen, onClose, outreachName, outreachEmail, outrea
                   }}
                 />
               </div>
+
+              {errorMsg && (
+                <p className="font-dm" style={{ fontSize: "0.78rem", color: "#e08585", margin: 0 }}>
+                  {errorMsg}
+                </p>
+              )}
             </div>
 
             {/* Footer */}

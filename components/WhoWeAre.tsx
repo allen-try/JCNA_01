@@ -1,22 +1,15 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import WhoWeAreCardGrid from "@/components/WhoWeAreCardGrid";
+import { sectionSummaries } from "@/components/whoWeAreSections";
 
 const EASE_CURVE = [0.16, 1, 0.3, 1] as const;
 
-const sections = [
-  { id: "goals",      label: "Goals"      },
-  { id: "mission",    label: "Mission"    },
-  { id: "doctrines",  label: "Doctrines"  },
-  { id: "values",     label: "Values"     },
-  { id: "culture",    label: "Culture"    },
-  { id: "leadership", label: "Leadership" },
-];
-
+// Lives INSIDE the home page — the home page itself owns the single
+// Navbar/Footer at its root, so this component intentionally has neither.
 export default function WhoWeAre() {
-  const router = useRouter();
   const sectionRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
 
@@ -52,25 +45,10 @@ export default function WhoWeAre() {
           />
         </motion.div>
 
-        {/* CARD GRID — clicking navigates to /WhoWeAre?section=... */}
-        <motion.div
-          className="grid grid-cols-2 min-[421px]:grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-2 min-[421px]:gap-3 mt-7"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.65, ease: EASE_CURVE, delay: 0.22 }}
-        >
-          {sections.map((s) => (
-            <button
-              key={s.id}
-              className="flex items-center justify-center px-3.5 py-5 rounded-[10px] text-center cursor-pointer border-[1.5px] border-[#E2EAC8] bg-white transition-all duration-250 ease-in-out active:scale-95 hover:border-[#7AAB50] hover:shadow-[0_4px_16px_rgba(45,80,22,0.10)] hover:-translate-y-0.5"
-              onClick={() => router.push(`/WhoWeAre?section=${s.id}`)}
-            >
-              <span className="font-cormorant text-[clamp(14px,2.2vw,16px)] tracking-[0.07em] font-medium text-[#4A7C2F]">
-                {s.label}
-              </span>
-            </button>
-          ))}
-        </motion.div>
+        {/* CARD GRID — "link" mode: clicking navigates straight to
+            /WhoWeAre?section=id, prefetched on viewport-enter/hover so
+            the click feels instant instead of triggering a visible load. */}
+        <WhoWeAreCardGrid sections={sectionSummaries} inView={inView} mode="link" />
 
         {/* BOTTOM DIVIDER */}
         <motion.div

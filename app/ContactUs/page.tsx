@@ -261,6 +261,8 @@ const infoCards = [
 function ContactForm() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", concern: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const inputStyle: React.CSSProperties = {
     width: "100%",
@@ -290,9 +292,47 @@ function ContactForm() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setErrorMsg("");
+
+    const payload = {
+      full_name: form.name,
+      phone: form.phone,
+      email: form.email,
+      concern: form.concern,
+      service_type: "General Inquiry",
+    };
+
+    try {
+      // 1. Save to Supabase
+      const saveRes = await fetch("/api/spiritual-services/saveSubmission", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!saveRes.ok) throw new Error("Failed to save submission");
+
+      // 2. Send confirmation + admin notification email (only if email was provided)
+      if (form.email) {
+        const emailRes = await fetch("/api/spiritual-services/sendEmailConfirmation", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (!emailRes.ok) {
+          console.error("Email failed to send, submission was still saved");
+        }
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Submit error:", err);
+      setErrorMsg("Something went wrong. Please try again or contact us directly.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -403,14 +443,21 @@ function ContactForm() {
         />
       </div>
 
+      {errorMsg && (
+        <p style={{ color: "#C0392B", fontFamily: "'DM Sans', sans-serif", fontSize: "13px", margin: 0 }}>
+          {errorMsg}
+        </p>
+      )}
+
       <button
         type="submit"
+        disabled={loading}
         style={{
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
           gap: "8px",
-          background: "#82B657",
+          background: loading ? "#a9c98f" : "#82B657",
           color: "#fff",
           fontFamily: "'DM Sans', sans-serif",
           fontWeight: 500,
@@ -418,7 +465,7 @@ function ContactForm() {
           padding: "13px 32px",
           borderRadius: "999px",
           border: "none",
-          cursor: "pointer",
+          cursor: loading ? "default" : "pointer",
           width: "fit-content",
           alignSelf: "flex-start",
           transition: "background 0.2s",
@@ -428,7 +475,7 @@ function ContactForm() {
           <line x1="22" y1="2" x2="11" y2="13" />
           <polygon points="22 2 15 22 11 13 2 9 22 2" />
         </svg>
-        Send Message
+        {loading ? "Sending..." : "Send Message"}
       </button>
     </form>
   );
