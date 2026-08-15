@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
 interface Props {
   onNavigate: (id: string) => void;
 }
@@ -19,7 +17,7 @@ const PreachingPanel = ({ onNavigate }: Props) => {
           src="https://www.youtube.com/embed/p3LQ91OYZjw?si=lXKM7uPWbsOPc82i"
           className="w-full h-full"
           style={{ border: "none", display: "block" }}
-          title="Testimony of Beloved Sis. Rutchie Armenion"
+          title="Preaching Service — JCNA Ministry"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen

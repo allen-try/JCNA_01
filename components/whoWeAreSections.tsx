@@ -10,79 +10,47 @@ export const docItems: {
   content?: React.ReactNode;
 }[] = [
   {
-    id: "bible", num: "I", title: "The Holy Bible",
+    id: "bible", num: "I", title: "The supremacy of the Holy Bible",
     content: (
       <div className="text-[#4A7C2F] text-[13px] leading-[1.9] flex flex-col gap-2">
-        <p>The Bible was inspired by God — the Holy Spirit guided the authors in choosing every word (2 Tim. 3:16, 2 Pet. 1:20–21). Both Old and New Testaments claim divine origin and absolute authority (Ps. 19:7; 119:89, Matt. 5:17–18).</p>
-        <p>The Bible contains no errors — it is historically accurate (e.g., the conquest of Jericho, Pontius Pilate) and scientifically sound (e.g., the earth suspended in space — Job 26:7; stars uncountable — Jer. 33:22; earth is a sphere — Isa. 40:22).</p>
-        <p>JCNA holds the Holy Bible as God's inspired, accurate, true, and infallible written revelation — the final authority in all matters of faith and conduct (2 Tim. 3:16–17).</p>
+        <p>We hold the Holy Bible as God's inspired, accurate, true, and infallible written revelation — the final authority in all matters of faith and conduct.</p>
+        <p>We believe that the Holy Bible is the ultimate, true, and final authority in matters of faith, practice, and truth. It emphasizes the preeminence of God's Word over human reasoning, cultural philosophies, and secular laws.</p>
+        <p>The Bible was inspired by God — the Holy Spirit guided the authors in choosing every word. Both Old and New Testaments claim divine origin and absolute authority.</p>
+        <p>The Bible contains no errors - it is historically accurate and scientifically sound.</p>
       </div>
     ),
   },
   {
-    id: "god", num: "II", title: "One God — Apostolic Doctrine",
+    id: "god", num: "II", title: "The Oneness of GOD",
     content: (
       <div className="text-[#4A7C2F] text-[13px] leading-[1.9] flex flex-col gap-2">
-        <p>JCNA believes there is only one God (Deut. 6:4), creator of heaven and earth, revealed through three titles and functions:</p>
+        <p>We believe that there is only one God, the creator of heavens and earth, who manifests in three forms and functions:</p>
         <div>
           <p className="font-semibold text-[#2D5016] mb-0.5">A. Father</p>
-          <p>God is Spirit (John 4:24), eternal, unchanging, all-powerful, omnipresent, omniscient, and perfectly holy, righteous, loving, and faithful.</p>
+          <p>God is Spirit, eternal, unchanging, all-powerful, omnipresent, omniscient, and perfectly holy, righteous, loving, and faithful. In the Old Testament, He is revealed through names like Jehovah-Jireh (Provider), Jehovah-Raphi (Healer), and El Shaddai (Almighty).</p>
         </div>
         <div>
           <p className="font-semibold text-[#2D5016] mb-0.5">B. Son — Jesus Christ</p>
-          <p>Jesus is the visible expression of the invisible God (Col. 1:15) — fully God and fully man (John 1:1,14; Gal. 4:4–5; Rom. 4:25).</p>
+          <p>Jesus is the visible expression of the invisible God - fully God and fully man. He lived, died, rose again, and ascended so that humanity could be redeemed.</p>
         </div>
         <div>
           <p className="font-semibold text-[#2D5016] mb-0.5">C. Holy Spirit</p>
-          <p>The Holy Spirit is the Spirit of God and of Jesus Christ (Rom. 8:9), dwelling in believers for sanctification, purification, and empowerment (John 3:5–7; 1 Cor. 3:16).</p>
+          <p>The Holy Spirit is the Spirit of God and of Jesus Christ, not a separate person but God's presence dwelling in believers for sanctification, purification, and empowerment.</p>
         </div>
       </div>
     ),
   },
-  { id: "fall", num: "III", title: "The Fall of Man / Sin" },
   {
-    id: "salvation", num: "IV", title: "Salvation — Grace, Faith, and Works",
-    content: (
-      <div className="text-[#4A7C2F] text-[13px] leading-[1.9] font-semibold flex flex-col gap-1">
-        <p>A. Justification</p>
-        <p>B. Sanctification</p>
-        <p>C. Glorification</p>
-      </div>
-    ),
-  },
-  { id: "healing", num: "V", title: "Divine Healing" },
-  {
-    id: "church", num: "VI", title: "The Church and Its Mission",
+    id: "salvation", num: "III", title: "Salvation — Grace, Faith, and Works",
     content: (
       <div className="text-[#4A7C2F] text-[13px] leading-[1.9] flex flex-col gap-1">
-        {["Fivefold Ministries", "Discipleship", "Evangelism", "Holiness", "Restoration of Israel Salvation"].map((item, i) => (
-          <p key={i}><span className="font-semibold text-[#2D5016]">{String.fromCharCode(65 + i)}.</span> {item}</p>
-        ))}
+        <p>We believe that we are saved by God's grace through faith.</p>
       </div>
     ),
   },
+  { id: "healing", num: "IV", title: "Divine Healing" },
   {
-    id: "ordinances", num: "VII", title: "Church Ordinances",
-    content: (
-      <div className="text-[#4A7C2F] text-[13px] leading-[1.9] flex flex-col gap-1">
-        {["The Lord's Supper", "Child Dedication", "Baptism", "Matrimony", "Blessings (property, house, car, etc.)"].map((item, i) => (
-          <p key={i}><span className="font-semibold text-[#2D5016]">{String.fromCharCode(65 + i)}.</span> {item}</p>
-        ))}
-      </div>
-    ),
-  },
-  {
-    id: "culture-doc", num: "VIII", title: "Church Culture and Practices",
-    content: (
-      <div className="text-[#4A7C2F] text-[13px] leading-[1.9] flex flex-col gap-1">
-        {["Prayer and Fasting", "Giving (tithes, offering, first fruit, charity)", "Dress Code", "Food", "Day of Church Worship or Rest"].map((item, i) => (
-          <p key={i}><span className="font-semibold text-[#2D5016]">{String.fromCharCode(65 + i)}.</span> {item}</p>
-        ))}
-      </div>
-    ),
-  },
-  {
-    id: "values-doc", num: "IX", title: "The Church Core Values",
+    id: "values-doc", num: "V", title: "The Church Core Values",
     content: (
       <div className="flex flex-wrap gap-1.5 mt-1">
         {["Love", "Joy", "Peace", "Honesty", "Kindness", "Respect", "Self-Control", "Gentleness", "Obedience"].map((v) => (
@@ -92,7 +60,7 @@ export const docItems: {
     ),
   },
   {
-    id: "baptism", num: "X", title: "Baptism",
+    id: "baptism", num: "VI", title: "Baptism",
     content: (
       <div className="text-[#4A7C2F] text-[13px] leading-[1.9] flex flex-col gap-1">
         {["Baptism of Water", "Baptism of Holy Spirit", "Baptism of Fire"].map((item, i) => (
@@ -101,10 +69,10 @@ export const docItems: {
       </div>
     ),
   },
-  { id: "rapture", num: "XI", title: "The Rapture" },
-  { id: "resurrection", num: "XII", title: "The Resurrection" },
+  { id: "rapture", num: "VII", title: "The Rapture" },
+  { id: "resurrection", num: "VIII", title: "The Resurrection" },
   {
-    id: "judgment", num: "XIII", title: "Judgment",
+    id: "judgment", num: "IX", title: "Judgment",
     content: (
       <div className="text-[#4A7C2F] text-[13px] leading-[1.9] flex flex-col gap-1">
         {[
@@ -123,9 +91,6 @@ export const docItems: {
 function DoctrineIntro() {
   return (
     <div>
-      <p className="mb-4 text-[#4A7C2F] text-[13px] leading-[1.9]">
-        We uphold the Holy Bible as inspired, infallible, and the absolute authority over all faith and conduct. Click any article below to read more.
-      </p>
       <DoctrineAccordion items={docItems} />
     </div>
   );
@@ -137,32 +102,24 @@ function DoctrineIntro() {
 // out of sync between the two views.
 export const sections: { id: string; label: string; content: React.ReactNode }[] = [
   {
-    id: "goals", label: "Goals",
+    id: "purpose", label: "Purpose",
     content: (
-      <ul className="m-0 p-0 pl-1 text-[#4A7C2F] text-[13px] leading-[1.9] list-none flex flex-col gap-2">
-        {[
-          "To uphold sound doctrine and live a holy life in conduct, action, and morality.",
-          "To be a light bearer in a dark world by means of showing the Christ like attitude.",
-          "To share and impart the gospel of Christ to everyone in season and out of season.",
-        ].map((item, i) => (
-          <li key={i} className="flex gap-2.5 items-start">
-            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#4A7C2F] shrink-0" />
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
+      <div className="text-[#4A7C2F] text-[13px] leading-[1.9] flex flex-col gap-2">
+        <p>We exist to glorify God, sanctify our members, and spread the gospel of Christ to the world.</p>
+        <p>As light bearers, we uphold sound doctrine and live a holy life every day. We live our faith through service and love for others, responsible stewardship, and acting with integrity, modesty and holiness.</p>
+      </div>
     ),
   },
   {
     id: "mission", label: "Mission",
     content: (
       <p className="m-0 text-[#4A7C2F] text-[13px] leading-[1.9]">
-        To bring back the lost soul and gather together into the one fold church to serve and glorify the One True Shepherd Jesus Christ by means of evangelizing, inviting, equipping and teaching the sound doctrine.
+        To gather lost souls into the one fold church to serve and glorify the One True Shepherd JESUS CHRIST by means of evangelizing, inviting, equipping and teaching the sound doctrine.
       </p>
     ),
   },
   {
-    id: "doctrines", label: "Doctrines",
+    id: "doctrines", label: "Key Doctrines",
     content: <DoctrineIntro />,
   },
   {

@@ -35,7 +35,7 @@ const JoyfulContent = () => (
         className="font-dm text-center lg:text-left mb-6"
         style={{ fontSize: "clamp(12px, 2.5vw, 14px)", color: "#4A7C2F", lineHeight: 1.85 }}
       >
-        <span style={{ fontWeight: 700, color: "#2D5016" }}>Joyful worship - </span>We sing and dance for the glory of the Lord through lively praise and worship songs with moderate to fast tempos. For nearly an hour, the congregation joins in singing, clapping, and dancing with one purpose—to glorify the Lord. The worship service is led by a song leader together with assisting singers.
+        <span style={{ fontWeight: 700, color: "#2D5016" }}>Joyful Praise - </span>We sing and dance for the glory of the Lord through lively praise and worship songs with moderate to fast tempos. For nearly an hour, the congregation joins in singing, clapping, and dancing with one purpose—to glorify the Lord. The worship service is led by a song leader together with assisting singers.
 </p>
       <p  
         className="font-cormorant italic text-center lg:text-left"
@@ -77,7 +77,7 @@ const SolemnContent = () => (
         className="font-dm text-center lg:text-left mb-6"
         style={{ fontSize: "clamp(12px, 2.5vw, 14px)", color: "#4A7C2F", lineHeight: 1.85 }}
       >
-        <span style={{ fontWeight: 700, color: "#2D5016" }}>Solemn worship - </span> A series of solemn worship songs with slow tempos are sung while the congregation kneels in reverence and sings in unison. In this form of worship, the songs become prayers offered to the Lord. This sacred moment may last from 30 minutes to an hour and is led by a song leader together with assisting singers. 
+        <span style={{ fontWeight: 700, color: "#2D5016" }}>Solemn Worship - </span> A series of solemn worship songs with slow tempos are sung while the congregation kneels in reverence and sings in unison. In this form of worship, the songs become prayers offered to the Lord. This sacred moment may last from 30 minutes to an hour and is led by a song leader together with assisting singers. 
 
       </p>
 
@@ -124,7 +124,7 @@ const PraiseWorshipPanel = ({ onNavigate }: Props) => {
                   transition: "background 220ms ease, color 220ms ease",
                 }}
               >
-                {tab === "joyful" ? "Joyful Songs" : "Solemn Songs"}
+                {tab === "joyful" ? "Joyful Praise" : "Solemn Worship"}
               </button>
             );
           })}

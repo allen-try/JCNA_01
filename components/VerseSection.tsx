@@ -240,6 +240,9 @@ const sectionRef = useRef<HTMLDivElement | null>(null);
             >
               &ldquo; "And other sheep I have, which are{" "}
               <br className="hidden sm:block" />
+              not of this fold: them also I must bring, and they shall hear my voice;{" "}
+              <br className="hidden sm:block" />
+              and there shall be{" "}
               <span
                 style={{
                   color: "#9ABF5F",
@@ -247,11 +250,9 @@ const sectionRef = useRef<HTMLDivElement | null>(null);
                   animation: "verseAccentPulse 3.5s ease-in-out 1.6s infinite",
                 }}
               >
-                not of this fold:
-              </span>{" "}
-              them also I must bring, and they shall hear my voice;{" "}
-              <br className="hidden sm:block" />
-              and there shall be one fold, and one shepherd."&rdquo;
+                one fold
+              </span>
+              , and one shepherd."&rdquo;
             </p>
 
             {/*

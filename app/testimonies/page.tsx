@@ -6,10 +6,11 @@ import Container from "@/components/Container";
 
 const allTestimonies = [
   {
-    name: "Beloved Bro. Benith Pitogo",
-    desc: "God stepped into his story in a way only He could. What once seemed broken is now a living proof that His grace leaves nothing unchanged.",
-    embedId: "92n5DPXpFQM",
-    si: "kC3sY7cbPEk3z6Tt",
+    name: "Beloved Sis. Rutchie Armenion",
+    // ⚠️ PLACEHOLDER — replace with her actual testimony description.
+    desc: "God stepped into her story in a way only He could. Her journey stands as a living proof that His grace leaves nothing unchanged.",
+    embedId: "ne0QFV6YMmQ",
+    si: "icV90GQFUl5TZwG1",
   },
   {
     name: "Beloved Bro. Aljohn Canque",

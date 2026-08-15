@@ -52,7 +52,7 @@ export default function WhoWeAreCardGrid({
       {sections.map((s) => {
         const isCardOpen = mode === "toggle" && openId === s.id;
 
-        const cardClasses = `flex items-center justify-center px-3.5 py-5 rounded-[10px] text-center cursor-pointer border-[1.5px] transition-[transform,border-color,box-shadow] duration-200 ease-out active:scale-95 hover:border-[#7AAB50] hover:-translate-y-0.5 ${
+        const cardClasses = `group relative flex items-center justify-center px-3.5 py-5 rounded-[10px] text-center cursor-pointer border-[1.5px] overflow-hidden transition-[transform,border-color,box-shadow] duration-200 ease-out active:scale-95 hover:border-[#7AAB50] hover:-translate-y-0.5 ${
           isCardOpen
             ? "bg-[#F0F5E8] border-[#2D5016] shadow-[0_4px_18px_rgba(45,80,22,0.13)]"
             : "bg-white border-[#E2EAC8] hover:shadow-[0_4px_16px_rgba(45,80,22,0.10)]"
@@ -60,6 +60,13 @@ export default function WhoWeAreCardGrid({
 
         const labelClasses = `font-cormorant text-[clamp(14px,2.2vw,16px)] tracking-[0.07em] transition-colors duration-200 ${
           isCardOpen ? "text-[#2D5016] font-semibold italic" : "text-[#4A7C2F] font-medium"
+        }`;
+
+        // Top accent bar — sits flush across the top edge, darkens on
+        // hover/open. Muted sage at rest so it reads as a quiet structural
+        // detail rather than a loud highlight.
+        const topBarClasses = `absolute top-0 left-0 right-0 h-[3px] transition-colors duration-200 ease-out ${
+          isCardOpen ? "bg-[#2D5016]" : "bg-[#C5D09B] group-hover:bg-[#2D5016]"
         }`;
 
         // Same view-transition-name on both pages for a given card id lets
@@ -80,6 +87,7 @@ export default function WhoWeAreCardGrid({
               style={transitionStyle}
               onClick={(e) => handleLinkClick(e, href)}
             >
+              <span className={topBarClasses} aria-hidden="true" />
               <span className={labelClasses}>{s.label}</span>
             </Link>
           );
@@ -94,6 +102,7 @@ export default function WhoWeAreCardGrid({
             aria-expanded={isCardOpen}
             aria-controls="whoweare-panel"
           >
+            <span className={topBarClasses} aria-hidden="true" />
             <span className={labelClasses}>{s.label}</span>
           </button>
         );

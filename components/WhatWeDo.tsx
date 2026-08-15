@@ -134,6 +134,19 @@ const WhatWeDo = () => {
           transition:border-color 250ms ease, background 250ms ease,
                      transform 150ms ease, box-shadow 250ms ease;
           text-align:center;
+          position:relative;
+          overflow:hidden;
+        }
+        .wwd-card::before {
+          content:"";
+          position:absolute;
+          top:0; left:0; right:0;
+          height:3px;
+          background:#C5D09B;
+          transition:background 250ms ease;
+        }
+        .wwd-card:hover::before {
+          background:#2D5016;
         }
         .wwd-card:hover {
           border-color:#7AAB50;
