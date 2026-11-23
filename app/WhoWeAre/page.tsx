@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import WhoWeAreCardGrid from "@/components/WhoWeAreCardGrid";
-import { sections, sectionSummaries } from "@/components/whoWeAreSections";
+import { sections, sectionSummaries, legacySectionIds } from "@/components/whoWeAreSections";
 
 const EASE_CURVE = [0.16, 1, 0.3, 1] as const;
 
@@ -28,7 +28,9 @@ const WhoWeArePageContent = () => {
     if (hasHandledInitialParam.current) return;
     hasHandledInitialParam.current = true;
 
-    const section = searchParams.get("section");
+    const raw = searchParams.get("section");
+    // Old ids (purpose, mission, doctrines, ...) map to their new tab.
+    const section = raw ? legacySectionIds[raw] ?? raw : null;
     if (section && sections.some((s) => s.id === section)) {
       setSkipEntranceAnim(true);
       setOpenId(section);
@@ -117,6 +119,9 @@ const WhoWeArePageContent = () => {
                     <div className="flex items-center justify-between px-5 py-3.5 border-b border-[#E2EAC8] bg-[#F0F5E8]">
                       <span className="font-cormorant text-[clamp(16px,2.8vw,20px)] text-[#2D5016] font-semibold tracking-[0.08em] italic">
                         {openSection.label}
+                        <span className="ml-3 font-sans text-[11px] not-italic font-normal tracking-normal text-[#7AAB50]">
+                          {openSection.eyebrow}
+                        </span>
                       </span>
                       <button
                         className="w-7 h-7 rounded-full bg-[#2D5016] border-none shrink-0 flex items-center justify-center cursor-pointer transition-[transform,background-color] duration-150 hover:bg-[#3d6e20] hover:scale-[1.08]"
