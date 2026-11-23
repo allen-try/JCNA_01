@@ -9,8 +9,15 @@ type DocItem = {
   content?: React.ReactNode;
 };
 
-export default function DoctrineAccordion({ items }: { items: DocItem[] }) {
-  const [openDoc, setOpenDoc] = useState<string | null>(null);
+export default function DoctrineAccordion({
+  items,
+  defaultOpenId = null,
+}: {
+  items: DocItem[];
+  /** Optionally start with one item already open. */
+  defaultOpenId?: string | null;
+}) {
+  const [openDoc, setOpenDoc] = useState<string | null>(defaultOpenId);
   const toggle = (id: string) => setOpenDoc((prev) => (prev === id ? null : id));
 
   return (
@@ -33,7 +40,7 @@ export default function DoctrineAccordion({ items }: { items: DocItem[] }) {
                 isOpen ? "bg-[#F0F5E8]" : "bg-white"
               } ${hasContent ? "cursor-pointer" : "cursor-default"}`}
             >
-              <span className="bg-[#2D5016] text-white rounded-[6px] px-2 py-0.5 text-[11px] font-bold shrink-0">
+              <span className="bg-[#2D5016] text-white rounded-[6px] px-2 py-0.5 text-[11px] font-bold shrink-0 min-w-[22px] text-center">
                 {item.num}
               </span>
               <span className="font-semibold text-[13px] text-[#2D5016] flex-1">{item.title}</span>
@@ -51,9 +58,7 @@ export default function DoctrineAccordion({ items }: { items: DocItem[] }) {
             {/*
               CSS grid-rows height trick instead of animating height:"auto".
               0fr -> 1fr lets the browser compositor handle the transition,
-              no JS layout measuring, no reflow thrashing — this is what
-              was causing the stutter when a second (nested) accordion
-              animated inside the outer content pane's own height animation.
+              no JS layout measuring, no reflow thrashing.
             */}
             {hasContent && (
               <div
