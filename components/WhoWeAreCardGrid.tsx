@@ -42,6 +42,11 @@ export default function WhoWeAreCardGrid({
     // just get a plain instant navigation, no error, no broken click).
   };
 
+  // With an odd number of cards the 2-column mobile grid would leave the
+  // last card alone in its row, so let it span the full width instead.
+  const lastIndex = sections.length - 1;
+  const lastSpansRow = sections.length % 2 === 1;
+
   return (
     <motion.div
       className="grid grid-cols-2 min-[421px]:grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-2 min-[421px]:gap-3 mt-7"
@@ -49,10 +54,11 @@ export default function WhoWeAreCardGrid({
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.65, ease: EASE_CURVE, delay: 0.22 }}
     >
-      {sections.map((s) => {
+      {sections.map((s, i) => {
         const isCardOpen = mode === "toggle" && openId === s.id;
+        const spanClass = lastSpansRow && i === lastIndex ? "max-[420px]:col-span-2" : "";
 
-        const cardClasses = `group relative flex items-center justify-center px-3.5 py-5 rounded-[10px] text-center cursor-pointer border-[1.5px] overflow-hidden transition-[transform,border-color,box-shadow] duration-200 ease-out active:scale-95 hover:border-[#7AAB50] hover:-translate-y-0.5 ${
+        const cardClasses = `group relative flex items-center justify-center px-3.5 py-5 rounded-[10px] text-center cursor-pointer border-[1.5px] overflow-hidden transition-[transform,border-color,box-shadow] duration-200 ease-out active:scale-95 hover:border-[#7AAB50] hover:-translate-y-0.5 ${spanClass} ${
           isCardOpen
             ? "bg-[#F0F5E8] border-[#2D5016] shadow-[0_4px_18px_rgba(45,80,22,0.13)]"
             : "bg-white border-[#E2EAC8] hover:shadow-[0_4px_16px_rgba(45,80,22,0.10)]"
